@@ -2,17 +2,13 @@ FROM node:16.17.0
 
 WORKDIR /nest
 
-RUN npm config set registry https://registry.npm.taobao.org
-
-COPY package.json ./
+COPY package*.json ./
 
 RUN npm install
 
 COPY . .
 
 RUN npm run build
-
-RUN rm -rf node_modules && rm package-lock.json
 
 EXPOSE 3000
 
