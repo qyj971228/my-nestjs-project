@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /node_modules
-/src/module/database/providers/database.providers.ts
+/src/config/databse/mysql.ts
 
 # Logs
 logs

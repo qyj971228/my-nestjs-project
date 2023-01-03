@@ -1,4 +1,5 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TestEntity } from '../entity/test.entity';
 import { Test } from '../interface/test.interface';
@@ -7,8 +8,8 @@ import { Test } from '../interface/test.interface';
 export class TestService {
 
   constructor(
-    @Inject('TEST_REPOSITORY')
-    private testRepository: Repository<TestEntity>,
+    @InjectRepository(TestEntity)
+    private readonly testRepository: Repository<TestEntity>,
   ) {}
 
   async find(id: number): Promise<TestEntity> {
