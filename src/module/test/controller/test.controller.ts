@@ -1,4 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateDTO } from '../dto/create.dto';
+import { FindDTO } from '../dto/find.dto';
 import { TestEntity } from '../entity/test.entity';
 import { Test } from '../interface/test.interface';
 import { TestService } from '../service/test.service';
@@ -13,7 +15,12 @@ export class TestController {
   }
 
   @Get('/find/:id')
-  async find(@Param('id') id: number): Promise<TestEntity> {
-    return await this.testService.find(id)
+  async find(@Param() findDTO: FindDTO): Promise<TestEntity> {
+    return await this.testService.find(findDTO)
+  }
+
+  @Post('create')
+  async create(@Body() createDTO: CreateDTO) {
+    return await this.testService.create(createDTO)
   }
 }
