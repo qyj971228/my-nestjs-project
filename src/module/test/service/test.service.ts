@@ -23,7 +23,7 @@ export class TestService {
   }
 
   findAll(): Test[] {
-    if (!this.tests) {
+    if (!this.tests.length) {
       throw new BadRequestException();
     }
     return this.tests;
