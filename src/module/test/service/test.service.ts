@@ -15,7 +15,11 @@ export class TestService {
   ) {}
 
   async find(findDTO: FindDTO): Promise<TestEntity> {
-    return await this.testRepository.findOne({ where: { id: findDTO.id } })
+    return await this.testRepository
+      .createQueryBuilder('test')
+      .innerJoinAndSelect('test.user', 'user')
+      .where('test.id = :id', { id: findDTO.id })
+      .getOne()
   }
 
   async create(createDTO: CreateDTO) {

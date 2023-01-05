@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { UserEntity } from './user.entity';
 
 @Entity('test')
 export class TestEntity {
@@ -19,4 +20,7 @@ export class TestEntity {
 
   @Column({ default: false })
   isPublished: boolean;
+
+  @OneToOne(() => UserEntity, user => user.test)
+  user: UserEntity
 }
