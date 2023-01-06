@@ -7,6 +7,9 @@ export class PhotoEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: 'varchar', default: '0' })
+  sign: string
+
   @OneToMany(() => UrlEntity, url => url.photo)
   urls: UrlEntity[]
 
