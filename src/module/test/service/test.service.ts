@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { TestCache } from '../cache/test.cache';
 import { CreateDTO } from '../dto/create.dto';
 import { FindDTO } from '../dto/find.dto';
 import { TestEntity } from '../entity/test.entity';
@@ -12,6 +13,7 @@ export class TestService {
   constructor(
     @InjectRepository(TestEntity)
     private testRepository: Repository<TestEntity>,
+    private readonly testCahce: TestCache
   ) {}
 
   async find(findDTO: FindDTO): Promise<TestEntity> {
@@ -27,6 +29,11 @@ export class TestService {
     return res
   }
 
+  async testCache() {
+    return await this.testCahce.cacheTest()
+  }
+
+  // -------------------------------------------------------
   private tests: Test[] = [];
 
   // create(test: Test) {

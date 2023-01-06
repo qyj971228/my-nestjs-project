@@ -5,19 +5,13 @@ import { LoggerMiddleware } from '.././middleware/logger.middleware';
 import { TestController } from '../module/test/controller/test.controller';
 import { TestModule } from '.././module/test/test.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { host, password, database, synchronize } from 'src/config/databse/mysql';
+import { MYSQL } from 'src/config/databse/mysql';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host,
-      port: 3306,
-      username: 'root',
-      password,
-      database,
+      ...MYSQL,
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      synchronize,
     }),
     TestModule
   ],
