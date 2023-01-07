@@ -1,7 +1,7 @@
-import { Controller, Get, Param } from "@nestjs/common";
-import { FindDTO } from "../dto/find.dto";
-import { UserEntity } from "../entity/user.entity";
-import { UserService } from "../service/user.service";
+import { Controller, Get, Param } from '@nestjs/common';
+import { FindDTO } from '../dto/find.dto';
+import { UserEntity } from '../entity/user.entity';
+import { UserService } from '../service/user.service';
 
 @Controller('user')
 export class UserController {
@@ -9,7 +9,6 @@ export class UserController {
 
   @Get('/find/:id')
   async find(@Param() findDTO: FindDTO): Promise<UserEntity[]> {
-    return await this.userService.find(findDTO)
+    return await this.userService.find(findDTO);
   }
-
 }

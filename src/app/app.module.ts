@@ -13,15 +13,13 @@ import { MYSQL } from 'src/config/databse/mysql';
       ...MYSQL,
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     }),
-    TestModule
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes(TestController);
+    consumer.apply(LoggerMiddleware).forRoutes(TestController);
   }
 }

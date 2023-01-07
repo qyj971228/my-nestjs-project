@@ -21,6 +21,6 @@ export class TestEntity {
   @Column({ default: false })
   isPublished: boolean;
 
-  @OneToOne(() => UserEntity, user => user.test)
-  user: UserEntity
+  @OneToOne(() => UserEntity, (user) => user.test)
+  user: UserEntity;
 }

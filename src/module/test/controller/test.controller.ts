@@ -7,9 +7,7 @@ import { TestService } from '../service/test.service';
 
 @Controller('test')
 export class TestController {
-  constructor(
-    private readonly testService: TestService
-  ) {}
+  constructor(private readonly testService: TestService) {}
 
   @Get('findAll')
   findAll(): Test[] {
@@ -18,16 +16,16 @@ export class TestController {
 
   @Get('/find/:id')
   async find(@Param() findDTO: FindDTO): Promise<TestEntity> {
-    return await this.testService.find(findDTO)
+    return await this.testService.find(findDTO);
   }
 
   @Post('create')
   async create(@Body() createDTO: CreateDTO) {
-    return await this.testService.create(createDTO)
+    return await this.testService.create(createDTO);
   }
 
   @Get('cacheTest')
   async cacheTest() {
-    return await this.testService.testCache()
+    return await this.testService.testCache();
   }
 }

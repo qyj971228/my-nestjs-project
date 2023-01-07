@@ -9,11 +9,10 @@ import { Test } from '../interface/test.interface';
 
 @Injectable()
 export class TestService {
-
   constructor(
     @InjectRepository(TestEntity)
     private testRepository: Repository<TestEntity>,
-    private readonly testCahce: TestCache
+    private readonly testCahce: TestCache,
   ) {}
 
   async find(findDTO: FindDTO): Promise<TestEntity> {
@@ -21,16 +20,16 @@ export class TestService {
       .createQueryBuilder('test')
       .innerJoinAndSelect('test.user', 'user')
       .where('test.id = :id', { id: findDTO.id })
-      .getOne()
+      .getOne();
   }
 
   async create(createDTO: CreateDTO) {
-    const res = await this.testRepository.save(createDTO)
-    return res
+    const res = await this.testRepository.save(createDTO);
+    return res;
   }
 
   async testCache() {
-    return await this.testCahce.cacheTest()
+    return await this.testCahce.cacheTest();
   }
 
   // -------------------------------------------------------

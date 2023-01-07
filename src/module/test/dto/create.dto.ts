@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreateDTO {
   @IsString()
@@ -11,5 +11,4 @@ export class CreateDTO {
   @IsString()
   @IsOptional()
   filename: string;
-
 }

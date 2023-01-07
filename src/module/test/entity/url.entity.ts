@@ -7,8 +7,8 @@ export class UrlEntity {
   id: number;
 
   @Column({ default: '' })
-  val: string
+  val: string;
 
-  @ManyToOne(() => PhotoEntity, photo => photo.urls)
-  photo: PhotoEntity
+  @ManyToOne(() => PhotoEntity, (photo) => photo.urls)
+  photo: PhotoEntity;
 }

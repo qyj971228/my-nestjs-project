@@ -1,19 +1,16 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { FindDTO } from "../dto/find.dto";
-import { UserEntity } from "../entity/user.entity";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { FindDTO } from '../dto/find.dto';
+import { UserEntity } from '../entity/user.entity';
 @Injectable()
 export class UserDao {
-
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
-
   ) {}
 
   async find(findDTO: FindDTO): Promise<UserEntity[]> {
-
     // const sql = this.userRepository
     //   .createQueryBuilder('user')
     //   .leftJoinAndMapOne('user.test', TestEntity, 'test', 'test.id = user.testId')
@@ -38,13 +35,18 @@ export class UserDao {
       .leftJoinAndSelect('user.photos', 'photo')
       .leftJoinAndSelect('photo.urls', 'url')
       .where('user.test = :id', { id: findDTO.id })
-      .select(['user.firstname', 'user.lastname', 'test.name', 'photo.sign', 'url.val'])
-      .getMany()
+      .select([
+        'user.firstname',
+        'user.lastname',
+        'test.name',
+        'photo.sign',
+        'url.val',
+      ])
+      .getMany();
     // return await this.userRepository.find({
     //   select: ['firstname', 'lastname', 'test'],
     //   relations: ["test", "photos", 'photos.urls'],
     //   where: { id: findDTO.id },
     // })
   }
-
 }

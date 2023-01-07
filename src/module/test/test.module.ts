@@ -16,15 +16,9 @@ import { UserService } from './service/user.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([TestEntity, UserEntity, PhotoEntity]),
-    RedisModule
+    RedisModule,
   ],
-  providers: [
-    TestService,
-    UserService,
-    PhotoService,
-    UserDao,
-    TestCache
-  ],
+  providers: [TestService, UserService, PhotoService, UserDao, TestCache],
   controllers: [TestController, UserController, PhotoController],
 })
 export class TestModule {}

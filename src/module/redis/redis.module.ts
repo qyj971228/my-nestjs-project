@@ -7,9 +7,9 @@ import { RedisInstance } from './provider/redis-instance.provider';
       provide: RedisInstance,
       useFactory: async () => {
         return await RedisInstance.init();
-      }
-    }
+      },
+    },
   ],
-  exports: [RedisInstance]
+  exports: [RedisInstance],
 })
 export class RedisModule {}

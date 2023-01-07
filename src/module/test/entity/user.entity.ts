@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 import { PhotoEntity } from './photo.entity';
 import { TestEntity } from './test.entity';
 
@@ -14,12 +21,12 @@ export class UserEntity {
   lastname: string;
 
   @Column({ length: 100, default: '', select: false })
-  password: string
+  password: string;
 
-  @OneToOne(() => TestEntity, test => test.user)
+  @OneToOne(() => TestEntity, (test) => test.user)
   @JoinColumn()
   test: TestEntity;
 
-  @OneToMany(() => PhotoEntity, photo => photo.user)
-  photos: PhotoEntity[]
+  @OneToMany(() => PhotoEntity, (photo) => photo.user)
+  photos: PhotoEntity[];
 }
