@@ -31,18 +31,18 @@ export class UserDao {
     //   .getMany()
     return await this.userRepository
       .createQueryBuilder('user')
-      .leftJoinAndSelect('user.test', 'test')
+      .leftJoinAndSelect('user.test', 'test') // 参数: (自动连接外键对应的表, 外键表别名)
       .leftJoinAndSelect('user.photos', 'photo')
       .leftJoinAndSelect('photo.urls', 'url')
       .where('user.test = :id', { id: findDTO.id })
       .select([
-        'user.firstname',
+        'user.firstname', // 表名.字段名
         'user.lastname',
         'test.name',
         'photo.sign',
         'url.val',
       ])
-      .getMany();
+      .getMany(); // getRaw会获得未整理的数据, 结合AS进行重命名
     // return await this.userRepository.find({
     //   select: ['firstname', 'lastname', 'test'],
     //   relations: ["test", "photos", 'photos.urls'],

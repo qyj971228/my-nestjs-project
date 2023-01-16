@@ -19,3 +19,4 @@ CMD ["npm", "run", "start:env-prod"]
 
 # docker build -t {image_name}:{image_tag} . 
 # docker run -d --name {container_name} -p {host_port}:{docker_port} {image_name}:{image_tag}
+# docker run -d -p 3306:3306 --name mysql5_7 -e MYSQL_ROOT_PASSWORD={psw} -v /home/mysql:/var/lib/mysql mysql:5.7
