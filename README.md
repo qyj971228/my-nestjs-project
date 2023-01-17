@@ -1,6 +1,6 @@
 ## Prepare Configuration
 ```bash
-$ midkr ./src/config
+$ midkr ./src/config/database
 $ touch mysql.ts redis.ts
 ```
 
